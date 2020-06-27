@@ -71,7 +71,7 @@ for ismpl in range(Ngrid):
 Gom = Gom.T
 gom_avg = mean(Gom, axis=1)
 gom_std = std(Gom, axis=1)
-with open('Gom.dat', 'w') as f:
+with open('Gf.dat', 'w') as f:
     for iw in range(Nom):
         om = (iw - _Nom_half) * _tpdb
         f.write("%20.12lf %20.12lf %20.12lf\n" % (om, gom_avg[iw], 0.0))

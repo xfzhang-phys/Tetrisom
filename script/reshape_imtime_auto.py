@@ -25,7 +25,7 @@ ctau = mean(ctau, axis=2)
 # Output Gtau.dat and Sigma.dat
 gtau_avg = mean(ctau, axis=1)
 gtau_std = std(ctau, axis=1)
-with open('Gtau.dat', 'w') as f:
+with open('Gf.dat', 'w') as f:
     for it in range(Ntau):
         tau = it * _dt
         f.write("%20.12lf %20.12lf %20.12lf\n" % (tau, gtau_avg[it], 0.0))
