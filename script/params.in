@@ -1,0 +1,17 @@
+Lmax                        100             # number of attempts (larger for better spectrum)
+Ngrid                       64              # size of im-time or im-freq grid
+Nf                          1000             # number of global update in one attempt (larger for better spectrum)
+Tmax                        100            # length of markov-chain in one global update (larger for better ergodicity)
+Kmax                        50              # maximum size of rectangles (less than 100 is good enough in most cases)
+nwout                       100             # size of re-freq grid for output the spectral function
+Smin                        0.005           # minimum weight of rectangle (Smin << I / Kmax)
+wmin                        0.05            # minimum width for rectangle
+gamma                       2.0             # parameter to control the sampling step-length (larger for a shorter step)
+dmax                        2.0             # parameter to control the acceptance of markov-chain (larger for harder, dmax=2 is good in most cases)
+ommax                       10.0            # right boundary of re-freq grid
+ommin                       -10.0           # left boundary (ommin = 0 or 0- in 'auto' case)
+alpha_good                  2.0             # parameter to control the number of "good" result (larger for smooth spectrum but low resolution)
+temp                        0.05            # temperature in kelvin (output energy unit is meV)
+Norm                        -1.0            # normalization factor, set to be negative and then the code will try to find it in data (except when G(0) isn't in your data)
+monitor_fit_quality         false           # whether monitoring the quality of stochastic optimization
+corr_type                   fermion         # type of correlation function: 'fermion'/'boson'/'auto'/'imtime' (means fermion/boson green's function, auto-correlation of hermitian in im-freq/im-time)
