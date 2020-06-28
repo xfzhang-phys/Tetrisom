@@ -15,7 +15,7 @@ print("Please check you arguments: Temp  [Nom]  [nbin]")
 # Read Gtau from Gtau.dat
 ctau = loadtxt('ctau.dat')
 Ntau = ctau[0].shape[0]
-Ngrid = ctau.shape[0]
+Nsample = ctau.shape[0]
 _N = Ntau - 1
 
 # Get temperature and number of Matsubara frequencies from command line
@@ -28,8 +28,8 @@ else:
 if len(argv) > 2:
     _nbin = int(argv[3])
     ctau = ctau.T
-    ctau = ctau.reshape((Ntau, _nbin, int(Ngrid/_nbin)))
-    Ngrid = _nbin
+    ctau = ctau.reshape((Ntau, _nbin, int(Nsample/_nbin)))
+    Nsample = _nbin
     ctau = mean(ctau, axis=2).T
 
 _Nom_half = int((Nom - 1) / 2)
@@ -43,8 +43,8 @@ for i in range(1, Ntau):
 tau = array(tau)
 
 # Calculate Gom
-Gom = zeros((Ngrid, Nom))
-for ismpl in range(Ngrid):
+Gom = zeros((Nsample, Nom))
+for ismpl in range(Nsample):
     # moments for evaluate Gom by cubic spline
     spl = CubicSpline(tau, ctau[ismpl])
     dev1 = spl(tau, nu=1)
@@ -74,9 +74,9 @@ gom_std = std(Gom, axis=1)
 with open('Gf.dat', 'w') as f:
     for iw in range(Nom):
         om = (iw - _Nom_half) * _tpdb
-        f.write("%20.12lf %20.12lf %20.12lf\n" % (om, gom_avg[iw], 0.0))
+        f.write("%20.12lf %24.16lf %20.12lf\n" % (om, gom_avg[iw], 0.0))
 
 with open('Sigma.dat', 'w') as f:
     for iw in range(Nom):
         om = (iw - _Nom_half) * _tpdb
-        f.write("%20.12lf %20.12lf %20.12lf\n" % (om, gom_std[iw], 0.0))
+        f.write("%20.12lf %24.16lf %20.12lf\n" % (om, gom_std[iw], 0.0))
