@@ -20,14 +20,10 @@ git clone https://github.com/xfzhang-phys/Tetrisom.git ${path_of_tetrisom}
 ```
 Where `${path_of_tetrisom}` is the path on which you want tetrisom code to be located.
 
-For compiling, first you should go to `src` directory, and then change the `CC` variable in `Makefile`. `CC` should be set to the MPI-C++ compiler in your system.
+For compiling, first you should go to `${path_of_tetrisom}` directory and then change the `CC` variable in `Makefile`.
+`CC` should be set to the MPI-C++ compiler in your system. The optimization tags `OPT` should also be changed correspondingly.
 
-After this, you can type
-```bash
-make; make install
-```
-in your terminal, and then
-the code will be installed in `${path_of_tetrisom}` directory.
+After this, you can type `make` in your terminal, and then the code will be installed in `${path_of_tetrisom}` directory.
 
 Usage
 -----

@@ -9,7 +9,7 @@ print("Please check you arguments: temp nbin")
 
 # Read Gtau from ctau.dat
 ctau = loadtxt('ctau.dat')
-Ntau = ctau[0].shape[0]
+Ntau = ctau.shape[1]
 Nsample = ctau.shape[0]
 
 _boltz = 8.617333e-2    # in unit of meV/K

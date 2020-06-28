@@ -14,7 +14,7 @@ print("Please check you arguments: Temp  [Nom]  [nbin]")
 
 # Read Gtau from Gtau.dat
 ctau = loadtxt('ctau.dat')
-Ntau = ctau[0].shape[0]
+Ntau = ctau.shape[1]
 Nsample = ctau.shape[0]
 _N = Ntau - 1
 
@@ -24,7 +24,7 @@ temp = float(argv[1])
 if len(argv) > 1:
     Nom = int(argv[2])
 else:
-    Nom = 2 * Ntau - 1
+    Nom = Ntau
 if len(argv) > 2:
     _nbin = int(argv[3])
     ctau = ctau.T
