@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 
     // random number generator
     std::random_device r;
-    mt19937_64 rng(r());
+    std::mt19937_64 rng(r());
 
     SOM sw(10, 65, 100, 50, 60, 200, 0.001, 0.001, 2., 2., 20., 0., 1.5, 0.5, 1.0, true, "imtime");
 
