@@ -1,5 +1,12 @@
 #include "som.h"
 
+using std::mt19937_64;
+using std::uniform_int_distribution;
+using std::uniform_real_distribution;
+using std::normal_distribution;
+using std::vector;
+using std::complex;
+using std::string;
 
 SOM::SOM(uint32_t _Lmax, uint32_t _Ngrid, uint32_t _Nf, uint32_t _Tmax, uint32_t _Kmax, uint32_t _nwout,
     double _Smin, double _wmin, double _gamma, double _dmax, double _ommax,
@@ -92,8 +99,8 @@ void SOM::output(const uint32_t& mpi_rank, const uint32_t& mpi_size) {
                     double _omega = ommin + iw * (ommax - ommin) / nwout;
                     for (uint32_t ik = 0; ik < Kmax; ik++) {
                         uint32_t _idx = il * Kmax * 3 + ik * 3;
-                        if (_omega >= (total_conf[_idx + 2] - total_conf[_idx + 1] / 2)
-                            && _omega <= (total_conf[_idx + 2] + total_conf[_idx + 1] / 2)) {
+                        if (_omega >= (total_conf[_idx + 2] - 0.5 * total_conf[_idx + 1])
+                            && _omega <= (total_conf[_idx + 2] + 0.5 * total_conf[_idx + 1])) {
                             Aom[iw] += total_conf[_idx];
                         }
                     }
@@ -102,10 +109,10 @@ void SOM::output(const uint32_t& mpi_rank, const uint32_t& mpi_size) {
         }
         // output the spectral function: A(w)
         fp = fopen("Aw.dat", "w");
-        fprintf(fp, "#               w                A(w)\n");
+        fprintf(fp, "#               w                A(w)    /    %20.12lf\n", norm_spectrum);
         for (uint32_t iw = 0; iw < nwout; iw++) {
             double _omega = ommin + iw * (ommax - ommin) / nwout;
-            fprintf(fp, "%22.12lf    %22.12lf\n", _omega, Aom[iw] * norm_spectrum / Lgood);
+            fprintf(fp, "%22.12lf    %22.12lf\n", _omega, Aom[iw] / Lgood);
         }
         fclose(fp);
 

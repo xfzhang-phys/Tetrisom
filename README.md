@@ -41,6 +41,10 @@ When running the code, all these three files should be provided in the *running*
 mpirun -np ${nprocs} ${path_of_tetrisom}/som.x
 ```
 
+After finishing the task, you can obtain a normlized (sum to 1) spectral function in *Aw.dat* file, and the normalization factor is given on the first row in this file.
+
+In the *Som.out* file, you can see the accepetance ratios to minitor the qualification of the stochastic optimization.
+
 License
 -------
 
