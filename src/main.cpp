@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     SOM sw(10, 65, 100, 50, 60, 200, 0.001, 0.001, 2., 2., 20., 0., 1.5, 0.5, 1.0, true, "imtime");
 
     // loop for attempts
-    for (int il = 0; il < sw.Lmax; il++) {
+    for (uint32_t il = 0; il < sw.Lmax; il++) {
         sw.attempt(il, &rng);
     }
     MPI_Barrier(MPI_COMM_WORLD);
